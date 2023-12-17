@@ -1,0 +1,32 @@
+<div class="container">
+    <h1 class="mt-3">Reviews</h1>
+
+    <div class="d-flex justify-content-end mt-3">
+        <a [routerLink]="['/reviews/add']" class="btn btn-primary">Add Review</a>
+    </div>
+    
+    <ng-container *ngIf="reviews$ | async as reviews">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Rating</th>
+                    <th>Review</th>
+                    <th>Published Date</th>
+                    <th>Author</th>
+                    <th>Book Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let review of reviews">
+                    <td>{{review.title}}</td>
+                    <td>{{review.rating}}</td>
+                    <td>{{review.content}}</td>
+                    <td>{{review.publishedDate}}</td>
+                    <td>{{review.author}}</td> 
+                    <td>{{review.bookTitle.title}}</td>                  
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+</div>

@@ -1,0 +1,50 @@
+<ng-container *ngIf="book$ | async as book;else loader">
+<div class="container">
+    <div class="py-5">
+        <div class="col-12 col-md-8 col-lg-6 mx-auto">
+            <h1 class="mt-4">{{book.title}}</h1>
+            <p>Author:
+                <span>{{book.author}}</span>
+            </p>
+            <p>Publication Date:
+                <span>{{book.publicationDate | date: 'dd-MM-yyyy'}}</span>
+            </p>
+            <p>Plot Summary:
+                <span>{{book.plotSummary}}</span>
+            </p>
+            <h3>Reviews</h3>
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Rating</th>
+                    <th>Review</th>
+                    <th>Published Date</th>
+                    <th>Author</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let review of reviews$ | async">
+                    <td>{{ review.title }}</td>
+                    <td>{{ review.rating }}</td>
+                    <td>{{ review.content }}</td>
+                    <td>{{ review.publishedDate | date: 'dd-MM-yyyy'}}</td>
+                    <td>{{ review.author }}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+</ng-container>
+
+<ng-template #loader>
+    <div>
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</ng-template>
+<ng-template #noReviews>
+    <p>No reviews available for this book.</p>
+</ng-template>

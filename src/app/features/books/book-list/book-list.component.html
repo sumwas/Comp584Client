@@ -1,0 +1,19 @@
+<div class="container">
+    <h1 class="mt-3">Books List</h1> 
+    <ng-container *ngIf="books$ | async as books">
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let book of books">
+                    <td><a [routerLink]="['/books', book.urlHandle]">{{book.title}}</a></td>
+                    <td>{{book.author}}</td>
+                  </tr>                  
+            </tbody>
+        </table>
+    </ng-container>
+</div>
